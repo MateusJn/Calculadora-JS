@@ -12,7 +12,7 @@
         <div class="calculadora">
         <h1>Calculadora</h1>
     
-    <p id="resultado"></p>
+    <p id="resultado">0</p>
 
     <table>
         <tr>
@@ -52,35 +52,42 @@
     </div>
 
     <script>
-        function insert(num)
-        {
-            var numero = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = numero + num;
-        }
+        var operador = ""; 
 
-        function clean()
-        {
-            document.getElementById('resultado').innerHTML = "";
-        }
+        function insert(num) {
+            var resultado = document.getElementById('resultado').innerHTML;
 
-        function back()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
-        }
-        function calcular()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            if(resultado)
-            {
-                document.getElementById('resultado').innerHTML = eval(resultado);
+            if (resultado == "0" || resultado == "Vazio") {
+                document.getElementById('resultado').innerHTML = num;
+            } else {
+                document.getElementById('resultado').innerHTML = resultado + num;
             }
-            else
-            {
+
+            
+            if (!isNaN(num)) {
+                operador = "";
+            }
+        }
+
+        function clean() {
+            document.getElementById('resultado').innerHTML = "0";
+            operador = ""; 
+        }
+
+        function back() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+        }
+
+        function calcular() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            
+            if (resultado) {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            } else {
                 document.getElementById('resultado').innerHTML = "Vazio";
             }
         }
-
     </script>
 </body>
 </html>
